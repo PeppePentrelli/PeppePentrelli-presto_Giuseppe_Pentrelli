@@ -1,0 +1,90 @@
+/* Animazioni */
+
+/* Fade in per body */
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animazione per fulmine nel footer */
+@keyframes thunderboltAnimation {
+    0% {
+        transform: scale(1);
+        
+    }
+    
+    50% {
+        transform: scale(2);
+        color: rgb(238, 255, 0);
+    }
+    
+    100% {
+        transform: scale(1);
+        
+    }
+}
+
+/* Body */
+
+body {
+    animation: fadeInPage 0.5s ease-in;
+}
+
+/* Navbar */
+
+/*frecce per dropdowon */
+/* Bordo avatar */
+.avatar-border {
+    border: 2px solid white;
+    padding: 1px;
+    border-radius: 50%;
+    box-sizing: content-box;
+}
+
+/* Freccia dropdown bianca */
+.navbar-nav .dropdown-toggle::after {
+    border-top-color: #fff !important;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+
+.navbar-nav .nav-link {
+    padding: 0;
+}
+
+
+.navbar-nav.d-flex.flex-row {
+    gap: 0.75rem; 
+}
+
+
+.navbar-nav li.nav-item {
+    display: flex;
+    align-items: center;
+}
+
+/* Dropdown menu allineato a destra per avatar */
+.dropdown-menu.dropdown-menu-end {
+    right: 0;
+    left: auto;
+}
+
+
+/* Footer */
+
+.thunderbolt {
+    animation-name: thunderboltAnimation;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    display: inline-block;
+}
+
+
+
