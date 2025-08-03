@@ -2,89 +2,183 @@
 
 /* Fade in per body */
 @keyframes fadeInPage {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* Animazione per fulmine nel footer */
 @keyframes thunderboltAnimation {
-    0% {
-        transform: scale(1);
-        
-    }
-    
-    50% {
-        transform: scale(2);
-        color: rgb(238, 255, 0);
-    }
-    
-    100% {
-        transform: scale(1);
-        
-    }
+  0% {
+    transform: scale(1);
+
+  }
+
+  50% {
+    transform: scale(2);
+    color: rgb(238, 255, 0);
+  }
+
+  100% {
+    transform: scale(1);
+
+  }
 }
 
 /* Body */
 
 body {
-    animation: fadeInPage 0.5s ease-in;
+  animation: fadeInPage 0.5s ease-in;
 }
 
 /* Navbar */
 
-/*frecce per dropdowon */
 /* Bordo avatar */
 .avatar-border {
-    border: 2px solid white;
-    padding: 1px;
-    border-radius: 50%;
-    box-sizing: content-box;
+  border: 2px solid white;
+  padding: 1px;
+  border-radius: 50%;
+  box-sizing: content-box;
 }
 
 /* Freccia dropdown bianca */
 .navbar-nav .dropdown-toggle::after {
-    border-top-color: #fff !important;
-    margin-left: 0.5rem;
-    vertical-align: middle;
+  border-top-color: #fff !important;
+  margin-left: 0.5rem;
+  vertical-align: middle;
 }
 
 
 .navbar-nav .nav-link {
-    padding: 0;
+  padding: 0;
 }
 
 
 .navbar-nav.d-flex.flex-row {
-    gap: 0.75rem; 
+  gap: 0.75rem;
 }
 
 
 .navbar-nav li.nav-item {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 /* Dropdown menu allineato a destra per avatar */
 .dropdown-menu.dropdown-menu-end {
-    right: 0;
-    left: auto;
+  right: 0;
+  left: auto;
 }
 
+/* Dropdowon per articoli */
+.dropdown-menu {
+  max-height: 300px;
+  overflow-y: auto;
+}
 
 /* Footer */
 
 .thunderbolt {
-    animation-name: thunderboltAnimation;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
-    animation-delay: 0s;
-    animation-iteration-count: infinite;
-    display: inline-block;
+  animation-name: thunderboltAnimation;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  display: inline-block;
+}
+
+/* Article show */
+
+.sidebarShow {
+  position: sticky;
+  top: 100px;
+  /* uguale al distanziatore sopra navbar */
+  height: calc(100vh - 100px);
+  overflow-y: auto;
 }
 
 
+/* Componenti */
 
+/* Card article */
+.card .content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.card:hover .content {
+  transform: rotateY(180deg);
+}
+
+.card .front,
+.card .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  backface-visibility: hidden;
+}
+
+.card .front {
+  z-index: 2;
+}
+
+.card .back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Nasconde la sidebar per mobile*/
+@media (max-width: 767.98px) {
+  aside.sidebar {
+    display: none;
+  }
+}
+
+/* Carosello */
+
+/* Frecce carosello */
+.carousel-control-prev-icon {
+  background-color: #3B71CA;
+  color: #3B71CA;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E");
+}
+
+.carousel-control-next-icon {
+  background-color: #3B71CA;
+  color: #3B71CA;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 1 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 1 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+}
+
+/* Sidebar scorribile orizzontalmente su mobile */
+/* Aggiungilo nel tuo CSS */
+@media (max-width: 767.98px) {
+    .overflow-auto::-webkit-scrollbar {
+        display: none;
+    }
+    .overflow-auto {
+        -ms-overflow-style: none;  /* IE e Edge */
+        scrollbar-width: none;     /* Firefox */
+    }
+}
+
+    /* Nasconde la scrollbar su mobile */
+    @media (max-width: 768px) {
+        .d-md-none::-webkit-scrollbar {
+            display: none;
+        }
+    }

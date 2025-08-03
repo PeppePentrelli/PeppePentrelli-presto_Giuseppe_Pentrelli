@@ -1,5 +1,7 @@
+{{-- HomePage --}}
 <x-layout>
-    <div class="container-fluid bg-light text-dark min-vh-100 d-flex flex-column justify-content-center align-items-center">
+    {{-- Inizio Header Pubblica Articolo + Accedi --}}
+    <header class="container-fluid text-dark min-vh-100 d-flex flex-column justify-content-center align-items-center">
         <div class="text-center">
             <h1 class="display-1 fw-bold text-primary mb-3">
                 <i class="bi bi-lightning-charge-fill me-2"></i>Presto.it
@@ -19,5 +21,38 @@
                 </a>
             @endauth
         </div>
-    </div>
+    </header>
+
+    {{-- Fine Header Pubblica Articolo + Accedi --}}
+
+    {{-- Linea divisione sezione --}}
+    <hr class="text-primary">
+
+    {{-- Inizio Main-Ultimi articoli caricati --}}
+    <main class="container-fluid">
+
+        {{-- Titolo Main --}}
+        <h2 class="display-5 fw-bold text-primary my-5 text-center">
+            <i class="bi bi-lightning-charge-fill me-2"></i>Ultimi Articoli caricati
+        </h2>
+
+        <div class="row py-5">
+            {{-- Card per ogni Articolo in DB --}}
+            @forelse ($articles as $article)
+                <div class="col-12 col-md-4 col-lg-3">
+                    <x-card :article="$article" />
+                </div>
+
+                {{-- Se non sono stati caricati Artticoli --}}
+            @empty
+                <div class="col-12">
+                    <h3>Non sono stati caricati articoli</h3>
+                </div>
+            @endforelse
+        </div>
+    </main>
+
+
+    
+    {{-- Fine Main --}}
 </x-layout>

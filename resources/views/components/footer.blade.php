@@ -112,7 +112,6 @@
         </div>
     </section>
     <!-- Fine sezione: Links  -->
-
     <!-- Copyright -->
     <div class="text-center p-4 text-white" >
         © 2025 Copyright:
