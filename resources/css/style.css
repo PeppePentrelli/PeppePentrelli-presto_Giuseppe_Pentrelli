@@ -33,7 +33,9 @@
 
 body {
   animation: fadeInPage 0.5s ease-in;
+  background-color: #F3F4F6 !important;
 }
+
 
 /* Navbar */
 
@@ -96,7 +98,6 @@ body {
 .sidebarShow {
   position: sticky;
   top: 100px;
-  /* uguale al distanziatore sopra navbar */
   height: calc(100vh - 100px);
   overflow-y: auto;
 }
@@ -104,41 +105,58 @@ body {
 
 /* Componenti */
 
-/* Card article */
+/* Contenitore principale della card */
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2rem !important;
+  background-color: none !important;
+  box-shadow: 10px 10px 20px #3B71CA !important;
+  border: 2px solid #3B71CA !important;
+}
+
 .card .content {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-}
-
-.card:hover .content {
-  transform: rotateY(180deg);
 }
 
 .card .front,
 .card .back {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  transition: transform 0.5s ease;
   border-radius: 1rem;
   backface-visibility: hidden;
 }
 
+/* Stato iniziale */
 .card .front {
   z-index: 2;
+  transform: translateY(0%);
+  background: white;
 }
 
 .card .back {
-  transform: rotateY(180deg);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  box-sizing: border-box;
+  z-index: 1;
+  transform: translateY(100%);
+  background: #0d6efd; 
+  color: white;
 }
+
+/* Al passaggio del mouse */
+.card:hover .front {
+  transform: translateY(-100%);
+}
+
+.card:hover .back {
+  transform: translateY(0%);
+  z-index: 3;
+}
+
 
 /* Nasconde la sidebar per mobile*/
 @media (max-width: 767.98px) {
@@ -165,7 +183,7 @@ body {
 }
 
 /* Sidebar scorribile orizzontalmente su mobile */
-/* Aggiungilo nel tuo CSS */
+
 @media (max-width: 767.98px) {
     .overflow-auto::-webkit-scrollbar {
         display: none;
@@ -182,3 +200,4 @@ body {
             display: none;
         }
     }
+

@@ -12,22 +12,22 @@
         <!-- Right -->
         <div>
             <a href="" class="me-4 text-reset">
-                <i class="bi bi-facebook"></i> {{-- Da fab fa-facebook-f --}}
+                <i class="bi bi-facebook"></i> 
             </a>
             <a href="" class="me-4 text-reset">
-                <i class="bi bi-twitter"></i> {{-- Da fab fa-twitter --}}
+                <i class="bi bi-twitter"></i> 
             </a>
             <a href="" class="me-4 text-reset">
-                <i class="bi bi-google"></i> {{-- Da fab fa-google --}}
+                <i class="bi bi-google"></i> 
             </a>
             <a href="" class="me-4 text-reset">
-                <i class="bi bi-instagram"></i> {{-- Da fab fa-instagram --}}
+                <i class="bi bi-instagram"></i> 
             </a>
             <a href="" class="me-4 text-reset">
-                <i class="bi bi-linkedin"></i> {{-- Da fab fa-linkedin --}}
+                <i class="bi bi-linkedin"></i> 
             </a>
             <a href="" class="me-4 text-reset">
-                <i class="bi bi-github"></i> {{-- Da fab fa-github --}}
+                <i class="bi bi-github"></i> 
             </a>
         </div>
         <!-- Right -->
@@ -49,8 +49,17 @@
                         Here you can use rows and columns to organize your footer content. Lorem ipsum
                         dolor sit amet, consectetur adipisicing elit.
                     </p>
+
+                    <div class="mt-5 bord">
+                        <h5>Diventa revisore!</h5>
+                        <p>Clicca per fare richiesta</p>
+                        <a class="btn btn-light" href="{{route('become.revisor')}}">Diventa revisore</a>
+                    </div>
+                    
                 </div>
                 <!-- Grid column -->
+
+                
 
                 <!-- Grid column -->
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">

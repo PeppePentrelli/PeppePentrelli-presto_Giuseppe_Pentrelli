@@ -26,9 +26,29 @@ class Article extends Model
     ];
 
 
-
+// Relazioni con categorie
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
+
+// Relazioni con utenti
+public function user(): BelongsTo
+{
+return $this->belongsTo(User::class);
+}
+
+// Logica per valutazione Articoli
+public function setAccepted($value) { 
+    $this->is_accepted = $value;
+    $this->save();
+    return true;
+}
+
+// Funzione per conteggio articoli da revisionare
+public static function toBeRevisedCount() {
+
+    return Article::where('is_accepted' , null)->count();
+}
+
 }

@@ -8,7 +8,7 @@
             <i class="bi bi-lightning-charge-fill my-5"></i>Tutti gli articoli
         </h2>
 
-        <div class="row">
+        <div class="row" >
             {{-- Sidebar categorie --}}
             <aside class="col-12 col-md-3 col-lg-2 mb-4 sidebar">
                 <div class="bg-white border shadow rounded p-3 h-100">
@@ -26,10 +26,10 @@
             </aside>
 
             {{-- Sezione articoli --}}
-            <section class="col-12 col-md-9 col-lg-10 ">
+            <section class="col-12 col-md-9 col-lg-10 " >
                 <div class="row justify-content-start">
                     @forelse ($articles as $article)
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center " >
                             <x-card :article="$article" />
                         </div>
                     @empty

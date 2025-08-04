@@ -2,7 +2,11 @@
 <nav class="navbar navbar-expand-lg bg-primary shadow fixed-top">
     <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap">
 
-        {{-- Icone home e menu articoli --}}
+        {{-- Logo --}}
+        <a class="navbar-brand text-white" href="{{ route('homepage') }}">
+            <i class="bi bi-lightning-charge-fill me-2 fs-3"></i>
+        </a>
+
         {{-- Icone home e menu dropdown --}}
         <ul class="navbar-nav d-flex flex-row ms-auto me-2 align-items-center">
 
@@ -116,6 +120,16 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         <li><a class="dropdown-item" href="#">My profile</a></li>
                         <li><a class="dropdown-item" href="#">Settings</a></li>
+                        @if (Auth::user()->is_revisor)
+                            <li>
+                                <a class="dropdown-item" href="{{ route('revisor.index') }}">
+                                    Entra come revisore
+                                    <span class="badge rounded-pill bg-danger ms-2">
+                               {{ \App\Models\Article::toBeRevisedCount() }} </span>
+                                    </span>
+                                </a>
+                            </li>
+                        @endif
                         <li>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf

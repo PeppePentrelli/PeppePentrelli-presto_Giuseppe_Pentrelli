@@ -56,7 +56,7 @@
 
 
             {{-- DETTAGLIO ARTICOLO --}}
-            <section class="col-12 col-md-9 col-lg-9 bg-light">
+            <section class="col-12 col-md-9 col-lg-9 ">
                 <div class="card mb-5 shadow bg-gradient">
 
                     {{-- Carosello --}}
