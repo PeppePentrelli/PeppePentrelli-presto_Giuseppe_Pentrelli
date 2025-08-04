@@ -12,22 +12,22 @@
         <!-- Right -->
         <div>
             <a href="" class="me-4 text-reset">
-                <i class="bi bi-facebook"></i> 
+                <i class="bi bi-facebook"></i>
             </a>
             <a href="" class="me-4 text-reset">
-                <i class="bi bi-twitter"></i> 
+                <i class="bi bi-twitter"></i>
             </a>
             <a href="" class="me-4 text-reset">
-                <i class="bi bi-google"></i> 
+                <i class="bi bi-google"></i>
             </a>
             <a href="" class="me-4 text-reset">
-                <i class="bi bi-instagram"></i> 
+                <i class="bi bi-instagram"></i>
             </a>
             <a href="" class="me-4 text-reset">
-                <i class="bi bi-linkedin"></i> 
+                <i class="bi bi-linkedin"></i>
             </a>
             <a href="" class="me-4 text-reset">
-                <i class="bi bi-github"></i> 
+                <i class="bi bi-github"></i>
             </a>
         </div>
         <!-- Right -->
@@ -53,13 +53,13 @@
                     <div class="mt-5 bord">
                         <h5>Diventa revisore!</h5>
                         <p>Clicca per fare richiesta</p>
-                        <a class="btn btn-light" href="{{route('become.revisor')}}">Diventa revisore</a>
+                        <a class="btn btn-light" href="{{ route('become.revisor') }}">Diventa revisore</a>
                     </div>
-                    
+
                 </div>
                 <!-- Grid column -->
 
-                
+
 
                 <!-- Grid column -->
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
@@ -122,9 +122,10 @@
     </section>
     <!-- Fine sezione: Links  -->
     <!-- Copyright -->
-    <div class="text-center p-4 text-white" >
+    <div class="text-center p-4 text-white">
         © 2025 Copyright:
-        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Pentrelli Giuseppe <i class="bi bi-lightning-fill thunderbolt"></i></a>
+        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Pentrelli Giuseppe <i
+                class="bi bi-lightning-fill thunderbolt"></i></a>
     </div>
     <!-- Copyright -->
 </footer>

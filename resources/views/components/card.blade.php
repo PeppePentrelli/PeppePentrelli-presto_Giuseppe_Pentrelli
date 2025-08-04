@@ -1,6 +1,6 @@
 {{-- card articoli --}}
 <div class="card mx-auto my-4"">
-    <div class="content" >
+    <div class="content">
 
         {{-- FRONT SIDE --}}
         <div class="front position-relative"
@@ -24,17 +24,17 @@
             </div>
 
 
-<div class="card-footer bg-light text-center py-2 rounded-bottom">
-    <small class="text-primary d-block">
-        <i class="bi bi-calendar-event me-1"></i>
-        {{ $article->created_at->format('d/m/Y') }}
-    </small>
+            <div class="card-footer bg-light text-center py-2 rounded-bottom">
+                <small class="text-primary d-block">
+                    <i class="bi bi-calendar-event me-1"></i>
+                    {{ $article->created_at->format('d/m/Y') }}
+                </small>
 
-    <small class="text-primary d-block mt-1 text-truncate" style="max-width: 100%;">
-        <i class="bi bi-person me-1"></i>
-        {{ $article->user ? $article->user->name : 'Utente non disponibile' }}
-    </small>
-</div>
+                <small class="text-primary d-block mt-1 text-truncate" style="max-width: 100%;">
+                    <i class="bi bi-person me-1"></i>
+                    {{ $article->user ? $article->user->name : 'Utente non disponibile' }}
+                </small>
+            </div>
 
         </div>
 
@@ -46,7 +46,7 @@
 
             <strong>{{ $article->category->name }}</strong>
 
-            <div class=" d-flex justify-content-center align-items-center mt-2" >
+            <div class=" d-flex justify-content-center align-items-center mt-2">
                 <a href="{{ route('article.show', compact('article')) }}"
                     class="btn btn-light btn-sm me-2 ">Dettaglio</a>
                 <a href="{{ route('byCategory', ['category' => $article->category]) }}"

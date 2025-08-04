@@ -2,6 +2,12 @@
 <nav class="navbar navbar-expand-lg bg-primary shadow fixed-top">
     <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap">
 
+        {{-- Form Ricerca Articoli --}}
+      <form class="d-flex" role="search" method="GET" action="{{route('article.search')}}">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query"/>
+        <button class="btn btn-light me-2" type="submit">Search</button>
+      </form>
+
         {{-- Logo --}}
         <a class="navbar-brand text-white" href="{{ route('homepage') }}">
             <i class="bi bi-lightning-charge-fill me-2 fs-3"></i>

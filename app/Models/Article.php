@@ -6,10 +6,12 @@ use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Scout\Searchable;
 
 class Article extends Model
 {
     use HasFactory;
+    use Searchable;
 
     protected $fillable = [
         'title',
@@ -26,29 +28,52 @@ class Article extends Model
     ];
 
 
-// Relazioni con categorie
+    // Relazioni con categorie
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-// Relazioni con utenti
-public function user(): BelongsTo
-{
-return $this->belongsTo(User::class);
-}
+    // Relazioni con utenti
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
-// Logica per valutazione Articoli
-public function setAccepted($value) { 
-    $this->is_accepted = $value;
-    $this->save();
-    return true;
-}
+    // Logica per valutazione Articoli
+    public function setAccepted($value)
+    {
+        $this->is_accepted = $value;
+        $this->save();
+        return true;
+    }
 
-// Funzione per conteggio articoli da revisionare
-public static function toBeRevisedCount() {
+    // Funzione per conteggio articoli da revisionare
+    public static function toBeRevisedCount()
+    {
 
-    return Article::where('is_accepted' , null)->count();
-}
+        return Article::where('is_accepted', null)->count();
+    }
 
+    // Funzione per ricerca articoli 
+    public function toSearchableArray()
+    {
+
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'description' => $this->description,
+            'price' => $this->price,
+            'category_id' => $this->category_id,
+            'user_id' => $this->user_id,
+            'shipping_info' => $this->shipping_info,
+            'length_cm' => $this->length_cm,
+            'width_cm' => $this->width_cm,
+            'height_cm' => $this->height_cm,
+            'weight_kg' => $this->weight_kg,
+        ];
+
+
+     
+    }
 }

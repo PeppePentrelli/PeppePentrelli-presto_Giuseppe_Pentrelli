@@ -24,6 +24,9 @@ Route::patch('/reject/{article}' , [RevisorContoller::class , 'reject'])->name('
 Route::get('/revisor/request' , [RevisorContoller::class, 'becomeRevisor'])->middleware('auth')->name('become.revisor');
 Route::get('/make/revisor/{user}' , [RevisorContoller::class, 'makeRevisor'])->middleware('auth')->name('make.revisor');
 
+// Rotte per ricerca di articoli
+Route::get('/search/article/' , [PublicController::class, 'searchArticles'])->name('article.search');
+
 
 
 
