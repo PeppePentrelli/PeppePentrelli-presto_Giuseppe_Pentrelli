@@ -17,7 +17,8 @@
             <div class="card-body text-center">
                 <h5 class="card-title text-truncate">{{ $article->title }}</h5>
                 <p class="text-muted mb-2">{{ $article->price }} €</p>
-                <small class="badge bg-info text-dark">#{{ $article->category->name }}</small>
+                <small class="badge bg-info text-dark">#{{ __('ui.' . $article->category->name) }}
+                </small>
 
 
 
@@ -44,13 +45,15 @@
 
             <i class="bi bi-lightning-charge-fill me-2 text-white display-3"></i>
 
-            <strong>{{ $article->category->name }}</strong>
+            <strong>
+                {{ __('ui.' . $article->category->name) }}
+            </strong>
 
             <div class=" d-flex justify-content-center align-items-center mt-2">
                 <a href="{{ route('article.show', compact('article')) }}"
-                    class="btn btn-light btn-sm me-2 ">Dettaglio</a>
+                    class="btn btn-light btn-sm me-2 ">{{ __('ui.detail') }}</a>
                 <a href="{{ route('byCategory', ['category' => $article->category]) }}"
-                    class="btn btn-light btn-sm ms-2">Categoria</a>
+                    class="btn btn-light btn-sm ms-2">{{ __('ui.category') }}</a>
             </div>
         </div>
 

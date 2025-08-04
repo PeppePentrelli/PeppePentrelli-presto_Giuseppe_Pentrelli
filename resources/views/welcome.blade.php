@@ -37,12 +37,13 @@
             </h1>
 
             <p class="lead text-muted mb-4">
-                Il tuo marketplace di fiducia per vendere e comprare articoli in modo semplice e veloce!
+                {{ __('ui.trusted_marketplace') }}
             </p>
+
 
             @auth
                 <a class="btn btn-lg btn-outline-primary px-4 py-2 shadow-sm" href="{{ route('article.create') }}">
-                    <i class="bi bi-plus-circle me-2"></i>Pubblica subito un articolo!
+                    <i class="bi bi-plus-circle me-2"></i>{{ __('ui.publish_article_now') }}
                 </a>
             @else
                 <a class="btn btn-lg btn-primary px-4 py-2 shadow-sm" href="{{ route('login') }}">
@@ -65,12 +66,12 @@
         <div class="d-flex justify-content-center flex-column align-items-center">
             {{-- Titolo Main --}}
             <h2 class="display-5 fw-bold text-primary my-5 text-center">
-                <i class="bi bi-lightning-charge-fill me-2"></i>Ultimi Articoli caricati
+                <i class="bi bi-lightning-charge-fill me-2"></i>{{ __('ui.latest_uploaded_articles') }}
             </h2>
             <a style="width: max-content;"
                 class="btn btn-lg btn-primary px-4 py-2 shadow-sm d-flex justify-content-center"
                 href="{{ route('article.index') }}">
-                <i class="bi bi-upc-scan me-2"></i>Tutti gli articoli!
+                <i class="bi bi-upc-scan me-2"></i>{{ __('ui.all_articles') }}
             </a>
         </div>
 

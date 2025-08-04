@@ -1,0 +1,78 @@
+<?php
+
+return [
+    'welcome' => 'Benvenuto',
+    'language' => 'Lingua',
+    'home' => 'Home',
+    'about' => 'Chi siamo',
+    'services' => 'Servizi',
+    'contact' => 'Contatti',
+    'login' => 'Accedi',
+    'register' => 'Registrati',
+    'logout' => 'Esci',
+    'profile' => 'Profilo',
+    'dashboard' => 'Bacheca',
+    'search' => 'Cerca',
+    'read_more' => 'Leggi di più',
+    'submit' => 'Invia',
+        'search' => 'Cerca',
+    'search_placeholder' => 'Cerca',
+    'elettronica' => 'Elettronica',
+'abbigliamento' => 'Abbigliamento',
+'salute e bellezza' => 'Salute e bellezza',
+'casa e giardinaggio' => 'Casa e giardinaggio',
+'giocattoli' => 'Giocattoli',
+'videogiochi' => 'Videogiochi',
+'sport' => 'Sport',
+'animali domestici' => 'Animali domestici',
+'libri e riviste' => 'Libri e riviste',
+'accesori' => 'Accessori',
+'arredamento' => 'Arredamento',
+'macchine e motori' => 'Macchine e motori',
+'musica' => 'Musica',
+'cosmetici' => 'Cosmetici',
+'scuola' => 'Scuola',
+'fai da te' => 'Fai da te',
+'cucina' => 'Cucina',
+
+
+    'all_articles' => 'Tutti gli articoli',
+    'publish_article' => 'Pubblica un articolo',
+
+
+    'language_it' => 'Italiano',
+    'language_en' => 'Inglese',
+    'language_es' => 'Spagnolo',
+    'language_fr' => 'Francese',
+    'language_de' => 'Tedesco',
+    'language_ru' => 'Russo',
+
+
+    'register' => 'Registrati',
+    'login' => 'Accedi',
+    'something_else_here' => 'Qualcos’altro qui',
+
+
+    'my_profile' => 'Il mio profilo',
+    'settings' => 'Impostazioni',
+    'enter_as_revisor' => 'Entra come revisore',
+    'logout' => 'Esci',
+            'search' => 'Cerca',
+        'search_placeholder' => 'Cerca',
+        'all_articles' => 'Tutti gli articoli',
+        'publish_article' => 'Pubblica un articolo',
+        'register' => 'Registrati',
+        'login' => 'Accedi',
+        'something_else_here' => 'Qualcos’altro qui',
+        'my_profile' => 'Il mio profilo',
+        'settings' => 'Impostazioni',
+        'enter_as_revisor' => 'Entra come revisore',
+        'logout' => 'Esci',
+        'trusted_marketplace' => 'Il tuo marketplace di fiducia per vendere e comprare articoli in modo semplice e veloce!',
+        'publish_article_now' => 'Pubblica subito un articolo!',
+        'latest_uploaded_articles' => 'Ultimi Articoli caricati',
+        'detail' => 'Dettaglio',
+'category' => 'Categoria',
+
+
+];

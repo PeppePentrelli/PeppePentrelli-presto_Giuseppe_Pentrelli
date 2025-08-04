@@ -3,10 +3,10 @@
     <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap">
 
         {{-- Form Ricerca Articoli --}}
-      <form class="d-flex" role="search" method="GET" action="{{route('article.search')}}">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query"/>
-        <button class="btn btn-light me-2" type="submit">Search</button>
-      </form>
+        <form class="d-flex" role="search" method="GET" action="{{ route('article.search') }}">
+            <input class="form-control me-2" type="search" placeholder="{{ __('ui.search') }}" aria-label="{{ __('ui.search') }}" name="query" />
+            <button class="btn btn-light me-2" type="submit">{{ __('ui.search') }}</button>
+        </form>
 
         {{-- Logo --}}
         <a class="navbar-brand text-white" href="{{ route('homepage') }}">
@@ -15,7 +15,6 @@
 
         {{-- Icone home e menu dropdown --}}
         <ul class="navbar-nav d-flex flex-row ms-auto me-2 align-items-center">
-
 
             {{-- Icona Home --}}
             <li class="nav-item mx-2">
@@ -33,12 +32,12 @@
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li>
                         <a class="dropdown-item" href="{{ route('article.index') }}">
-                            Tutti gli articoli
+                            {{ __('ui.all_articles') }}
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" href="{{ route('article.create') }}">
-                            Pubblica un articolo
+                            {{ __('ui.publish_article') }}
                         </a>
                     </li>
                     <li>
@@ -50,7 +49,7 @@
                         <li>
                             <a class="dropdown-item text-capitalize"
                                 href="{{ route('byCategory', ['category' => $category]) }}">
-                                {{ $category->name }}
+                                {{ __("ui.$category->name") }}
                             </a>
                         </li>
                         @if (!$loop->last)
@@ -64,7 +63,6 @@
 
         </ul>
 
-
         {{-- Dropdown lingua --}}
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
@@ -73,24 +71,30 @@
                     <i class="bi bi-gear text-white fs-4"></i>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#"><i class="flag-italy flag me-2"></i>Italiano <i
-                                class="fa fa-check text-success"></i></a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li>
-                    <li><a class="dropdown-item" href="#"><i class="flag-united-kingdom flag me-2"></i>English</a>
-                    </li>
-                    <li><a class="dropdown-item" href="#"><i class="flag-poland flag me-2"></i>Polski</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="flag-china flag me-2"></i>中文</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="flag-japan flag me-2"></i>日本語</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="flag-germany flag me-2"></i>Deutsch</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="flag-france flag me-2"></i>Français</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="flag-spain flag me-2"></i>Español</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="flag-russia flag me-2"></i>Русский</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="flag-portugal flag me-2"></i>Português</a>
-                    </li>
-                </ul>
+
             </li>
+            <li class="dropdown-item d-flex justify-content-center">
+                <x-_locale lang="it" />
+            </li>
+            <li class="dropdown-item d-flex justify-content-center">
+                <x-_locale lang="en" />
+            </li>
+            <li class="dropdown-item d-flex justify-content-center">
+                <x-_locale lang="es" />
+            </li>
+            <li class="dropdown-item d-flex justify-content-center">
+                <x-_locale lang="fr" />
+            </li>
+            <li class="dropdown-item d-flex justify-content-center">
+                <x-_locale lang="de" />
+            </li>
+            <li class="dropdown-item d-flex justify-content-center">
+                <x-_locale lang="ru" />
+            </li>
+
+            </li>
+        </ul>
+        </li>
         </ul>
 
         {{-- Login/Register guest --}}
@@ -102,12 +106,12 @@
                         <i class="bi bi-box-arrow-in-right fs-4"></i>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="guestDropdown">
-                        <li><a class="dropdown-item" href="{{ route('register') }}">Registrati</a></li>
-                        <li><a class="dropdown-item" href="{{ route('login') }}">Accedi</a></li>
+                        <li><a class="dropdown-item" href="{{ route('register') }}">{{ __('ui.register') }}</a></li>
+                        <li><a class="dropdown-item" href="{{ route('login') }}">{{ __('ui.login') }}</a></li>
                         <li>
                             <hr class="dropdown-divider" />
                         </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="#">{{ __('ui.something_else_here') }}</a></li>
                     </ul>
                 </li>
             </ul>
@@ -124,14 +128,14 @@
                             loading="lazy" />
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="#">My profile</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">{{ __('ui.my_profile') }}</a></li>
+                        <li><a class="dropdown-item" href="#">{{ __('ui.settings') }}</a></li>
                         @if (Auth::user()->is_revisor)
                             <li>
                                 <a class="dropdown-item" href="{{ route('revisor.index') }}">
-                                    Entra come revisore
+                                    {{ __('ui.enter_as_revisor') }}
                                     <span class="badge rounded-pill bg-danger ms-2">
-                               {{ \App\Models\Article::toBeRevisedCount() }} </span>
+                                        {{ \App\Models\Article::toBeRevisedCount() }} </span>
                                     </span>
                                 </a>
                             </li>
@@ -139,7 +143,7 @@
                         <li>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button type="submit" class="dropdown-item">Logout</button>
+                                <button type="submit" class="dropdown-item">{{ __('ui.logout') }}</button>
                             </form>
                         </li>
                     </ul>
