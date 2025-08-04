@@ -47,7 +47,7 @@
                     {{-- Categorie dinamiche --}}
                     @foreach ($categories as $category)
                         <li>
-                            <a class="dropdown-item text-capitalize"
+                            <a class="dropdown-item text-capitalize overflow-hidden"
                                 href="{{ route('byCategory', ['category' => $category]) }}">
                                 {{ __("ui.$category->name") }}
                             </a>

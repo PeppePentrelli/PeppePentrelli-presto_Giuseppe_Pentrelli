@@ -122,6 +122,49 @@
                 </div>
             </div>
 
+<hr>
+
+{{-- Inizio sezione caricamento immagini --}}
+<div class="mb-3 input-group">
+    <span class="input-group-text"><i class="bi bi-upload"></i></span>
+    <input type="file" wire:model.live="temporary_images" multiple 
+        class="form-control @error('temporary_images.*') is-invalid @enderror" placeholder="Img/">
+</div>
+
+@error('temporary_images.*')
+    <p class="text-danger">{{ $message }}</p>
+@enderror
+
+@error('temporary_images')
+    <p class="text-danger">{{ $message }}</p>
+@enderror
+
+
+@if(!empty($temporary_images))
+    <div class="row">
+        <div class="col-12">
+            <p>Anteprima foto:</p>
+            <div class="row border border-primary rounded shadow py-4 mx-auto mb-3">
+@foreach ($images as $key => $image)
+    <div class="col-6 col-md-3 mb-4 d-flex justify-content-center">
+        <div class="position-relative">
+            <div class="img-preview" style="background-image: url('{{ $image->temporaryUrl() }}');"></div>
+            <button type="button" wire:click="removeImage({{ $key }})"
+                class="btn btn-sm btn-danger position-absolute top-0 end-0 m-1 rounded-circle"
+                title="Rimuovi">
+                &times;
+            </button>
+        </div>
+    </div>
+@endforeach
+
+            </div>
+        </div>
+    </div>
+@endif
+
+{{-- Fine sezione caricamento immagini --}}
+
 
             <!-- Pulsante salva -->
             <div class="text-end">

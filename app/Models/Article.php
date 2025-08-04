@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Image;
 use App\Models\Category;
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Laravel\Scout\Searchable;
 
 class Article extends Model
 {
@@ -72,8 +74,13 @@ class Article extends Model
             'height_cm' => $this->height_cm,
             'weight_kg' => $this->weight_kg,
         ];
+    }
 
+    // Relazione con modello Image
 
-     
+    public function images(): HasMany
+    {
+
+        return $this->hasMany(Image::class);
     }
 }

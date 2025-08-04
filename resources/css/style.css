@@ -201,3 +201,20 @@ body {
         }
     }
 
+.img-preview {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 140px;
+  width: 140px;
+  border-radius: 1rem; /* bordi arrotondati */
+  box-shadow: 0 0 10px rgba(0, 128, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-preview:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 128, 0, 0.5);
+}

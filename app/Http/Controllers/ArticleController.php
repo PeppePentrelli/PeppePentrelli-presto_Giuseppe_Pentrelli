@@ -30,7 +30,14 @@ class ArticleController extends Controller implements HasMiddleware
     public function show(Article $article)
     {
         $articles = $article->category->articles()->where('id', '!=', $article->id)->get();
-        return view('article.show', compact('article', 'articles'));
+        // Articoli corlelati
+        $relatedArticles = Article::where('id', '!=', $article->id)
+            ->where('category_id', $article->category_id)
+            ->with('images')
+            ->take(6)
+            ->get();
+
+        return view('article.show', compact('article', 'relatedArticles'));
     }
 
     // Funzione per visualizzare gli articoli per categoria

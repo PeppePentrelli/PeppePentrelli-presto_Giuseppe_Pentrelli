@@ -6,6 +6,7 @@ use App\Models\Article;
 use Livewire\Component;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class CreateArticleForm extends Component
 {
@@ -58,6 +59,13 @@ $this->article= Article::create([
     'weight_kg' => $this->weight_kg ? : null,
 ]);
 
+if(count($this->images) > 0) { 
+
+    foreach ($this->images as $image) {
+        $this->article->images()->create(['path' => $image->store('images' , 'public')]);
+    }
+}
+
 $this->reset();
 session()->flash('success', 'Articolo pubblicato con successo!');
 }
@@ -68,5 +76,48 @@ session()->flash('success', 'Articolo pubblicato con successo!');
         return view('livewire.create-article-form');
     }
 
+    // Logica per implementare il caricamento di immagini
+    use WithFileUploads;
+
+    public $images = [];
+    public $temporary_images;
+
+
+    // Validazione immagini
+public function updatedTemporaryImages()
+{
+    $this->validate([
+        'temporary_images.*' => 'image|max:5024',
+        'temporary_images' => 'max:6',
+
+    ]);
+
+    foreach ($this->temporary_images as $image) {
+ 
+        $this->images[] =$image;
+    
+    }
+
 }
 
+
+// Logica per cancellare immagini dal form
+public function removeImage($key)
+{
+  if (in_array($key, array_keys($this->images))) {
+    unset($this->images[$key]);
+  }
+}
+
+// Messaggi personalizzati per errori immagine
+public function messages()
+{
+    return [
+        'temporary_images.*.image' => 'Ogni file deve essere un\'immagine.',
+        'temporary_images.*.max' => 'Ogni immagine non può superare i 5MB.',
+        'temporary_images.max' => 'Puoi caricare al massimo 6 immagini.',
+    ];
+}
+
+
+}
