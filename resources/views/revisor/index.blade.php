@@ -17,7 +17,7 @@
                             <div class="swiper-wrapper">
                                 @foreach ($article_to_check->images as $image)
                                     <div class="swiper-slide d-flex justify-content-center align-items-center bg-light">
-                                        <img src="{{ Storage::url($image->path) }}" alt="immagine articolo"
+                                        <img src="{{$image->getUrl(300,300)}}" alt="immagine articolo"
                                             class="img-fluid rounded" style="max-height: 300px; object-fit: contain;">
                                     </div>
                                 @endforeach

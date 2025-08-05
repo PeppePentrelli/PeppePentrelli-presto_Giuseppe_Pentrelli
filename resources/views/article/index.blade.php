@@ -26,10 +26,10 @@
             </aside>
 
             {{-- Sezione articoli --}}
-            <section class="col-12 col-md-9 col-lg-10 " >
+            <section class="col-12 col-md-10 col-lg-10 " >
                 <div class="row justify-content-start">
                     @forelse ($articles as $article)
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center " >
+                        <div class="col-12 col-md-3 col-lg-3 d-flex justify-content-center" style="max-width: 300px" >
                             <x-card :article="$article" />
                         </div>
                     @empty

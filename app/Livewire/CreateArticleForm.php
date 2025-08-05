@@ -4,8 +4,10 @@ namespace App\Livewire;
 
 use App\Models\Article;
 use Livewire\Component;
+use App\Jobs\ResizeImage;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class CreateArticleForm extends Component
@@ -13,64 +15,67 @@ class CreateArticleForm extends Component
 
     // Validazioni
 
-#[Validate('required|min:5')]
-public $title;
+    #[Validate('required|min:5')]
+    public $title;
 
-#[Validate('required|min:10')]
-public $description;
+    #[Validate('required|min:10')]
+    public $description;
 
-#[Validate('required|numeric')]
-public $price;
+    #[Validate('required|numeric')]
+    public $price;
 
-#[Validate('required|exists:categories,id')]
-public $category_id;
+    #[Validate('required|exists:categories,id')]
+    public $category_id;
 
-#[Validate('nullable|min:5')]
-public $shipping_info;
+    #[Validate('nullable|min:5')]
+    public $shipping_info;
 
-#[Validate('nullable|numeric|min:0')]
-public $length_cm;
+    #[Validate('nullable|numeric|min:0')]
+    public $length_cm;
 
-#[Validate('nullable|numeric|min:0')]
-public $width_cm;
+    #[Validate('nullable|numeric|min:0')]
+    public $width_cm;
 
-#[Validate('nullable|numeric|min:0')]
-public $height_cm;
+    #[Validate('nullable|numeric|min:0')]
+    public $height_cm;
 
-#[Validate('nullable|numeric|min:0')]
-public $weight_kg;
+    #[Validate('nullable|numeric|min:0')]
+    public $weight_kg;
 
-public $category;
-public $article;
+    public $category;
+    public $article;
 
-// Store
-public function store() { 
-    $this->validate();
-$this->article= Article::create([
-    'title' => $this->title,
-    'description' => $this->description,
-    'price' => $this->price,
-    'category_id' => $this->category_id,
-    'user_id' => Auth::id(), 
-    'shipping_info' => $this->shipping_info,
-    'length_cm' => $this->length_cm ? : null,
-    'width_cm' => $this->width_cm ? : null,
-    'height_cm' => $this->height_cm ? : null,
-    'weight_kg' => $this->weight_kg ? : null,
-]);
+    // Store
+    public function store()
+    {
+        $this->validate();
+        $this->article = Article::create([
+            'title' => $this->title,
+            'description' => $this->description,
+            'price' => $this->price,
+            'category_id' => $this->category_id,
+            'user_id' => Auth::id(),
+            'shipping_info' => $this->shipping_info,
+            'length_cm' => $this->length_cm ?: null,
+            'width_cm' => $this->width_cm ?: null,
+            'height_cm' => $this->height_cm ?: null,
+            'weight_kg' => $this->weight_kg ?: null,
+        ]);
 
-if(count($this->images) > 0) { 
+        if (count($this->images) > 0) {
+            foreach ($this->images as $image) {
+                $newFileName = "articles/{$this->article->id}";
+                $newImage = $this->article->images()->create(['path' => $image->store($newFileName, 'public')]);
+                dispatch(new ResizeImage($newImage->path, 300, 300));
+            }
+            File::deleteDirectory(storage_path('/app/livewire-tmp'));
+        }
 
-    foreach ($this->images as $image) {
-        $this->article->images()->create(['path' => $image->store('images' , 'public')]);
+        $this->reset();
+        session()->flash('success', 'Articolo pubblicato con successo!');
     }
-}
 
-$this->reset();
-session()->flash('success', 'Articolo pubblicato con successo!');
-}
-
-// Render
+    // Render
     public function render()
     {
         return view('livewire.create-article-form');
@@ -84,40 +89,36 @@ session()->flash('success', 'Articolo pubblicato con successo!');
 
 
     // Validazione immagini
-public function updatedTemporaryImages()
-{
-    $this->validate([
-        'temporary_images.*' => 'image|max:5024',
-        'temporary_images' => 'max:6',
+    public function updatedTemporaryImages()
+    {
+        $this->validate([
+            'temporary_images.*' => 'image|max:5024',
+            'temporary_images' => 'max:6',
 
-    ]);
+        ]);
 
-    foreach ($this->temporary_images as $image) {
- 
-        $this->images[] =$image;
-    
+        foreach ($this->temporary_images as $image) {
+
+            $this->images[] = $image;
+        }
     }
 
-}
 
+    // Logica per cancellare immagini dal form
+    public function removeImage($key)
+    {
+        if (in_array($key, array_keys($this->images))) {
+            unset($this->images[$key]);
+        }
+    }
 
-// Logica per cancellare immagini dal form
-public function removeImage($key)
-{
-  if (in_array($key, array_keys($this->images))) {
-    unset($this->images[$key]);
-  }
-}
-
-// Messaggi personalizzati per errori immagine
-public function messages()
-{
-    return [
-        'temporary_images.*.image' => 'Ogni file deve essere un\'immagine.',
-        'temporary_images.*.max' => 'Ogni immagine non può superare i 5MB.',
-        'temporary_images.max' => 'Puoi caricare al massimo 6 immagini.',
-    ];
-}
-
-
+    // Messaggi personalizzati per errori immagine
+    public function messages()
+    {
+        return [
+            'temporary_images.*.image' => 'Ogni file deve essere un\'immagine.',
+            'temporary_images.*.max' => 'Ogni immagine non può superare i 5MB.',
+            'temporary_images.max' => 'Puoi caricare al massimo 6 immagini.',
+        ];
+    }
 }

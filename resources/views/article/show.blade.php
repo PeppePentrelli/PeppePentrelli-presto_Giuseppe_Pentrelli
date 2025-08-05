@@ -53,58 +53,85 @@
             </div>
 
             {{-- DETTAGLIO ARTICOLO --}}
-            <section class="col-12 col-md-9 col-lg-9 ">
-                <div class="card mb-5 shadow bg-gradient">
-
+            <section class="col-12 col-md-9 col-lg-9">
+                <div class="card shadow p-3 bg-light">
+                    {{-- Carosello immagini 300x300 --}}
                     @if ($article->images->count() > 0)
-                        <div id="articleCarousel-{{ $article->id }}" class="carousel slide"> {{-- ID unico per carosello --}}
+                        <div id="carouselArticle-{{ $article->id }}" class="carousel slide mb-3">
                             <div class="carousel-inner">
                                 @foreach ($article->images as $key => $image)
                                     <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                        {{-- Assicurati che $image->path sia il percorso corretto, es. 'images/nomefile.jpg' --}}
-                                        <img src="{{ Storage::url($image->path) }}" class="d-block w-100 rounded shadow"
-                                            alt="Immagine {{ $key + 1 }} dell'articolo {{ $article->title }}"
-                                            style="object-fit: cover; height: 650px;"> {{-- Altezza ingrandita a 650px --}}
+                                        <img src="{{ $image->getUrl(300, 300) }}" class="d-block mx-auto rounded shadow"
+                                            alt="Immagine {{ $key + 1 }}" style="width: 300px; height: 300px; ">
                                     </div>
                                 @endforeach
                             </div>
-
-                            {{-- Controlli del carosello  --}}
                             @if ($article->images->count() > 1)
                                 <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#articleCarousel-{{ $article->id }}" data-bs-slide="prev">
+                                    data-bs-target="#carouselArticle-{{ $article->id }}" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Precedente</span>
                                 </button>
                                 <button class="carousel-control-next" type="button"
-                                    data-bs-target="#articleCarousel-{{ $article->id }}" data-bs-slide="next">
+                                    data-bs-target="#carouselArticle-{{ $article->id }}" data-bs-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Successivo</span>
                                 </button>
                             @endif
                         </div>
                     @else
-                        {{-- Immagine di default se non ci sono immagini associate --}}
-                        <img src="https://picsum.photos/902/400?random=1" class="d-block w-100 rounded shadow"
-                            alt="Nessuna foto inserita dall'utente" style="object-fit: cover; height: 650px;">
-                        {{-- Altezza ingrandita a 650px --}}
+                        <img src="https://picsum.photos/300/300?random=1" class="d-block mx-auto mb-3 rounded shadow"
+                            alt="Immagine di default" style="width: 300px; height: 300px; object-fit: contain;">
                     @endif
 
-                    {{-- Corpo della card --}}
-                    <div class="card-body">
-                        <h1 class="card-title">{{ $article->title }}</h1>
-                        @if (Auth::check())
-                            <p class="text-muted mb-2">Pubblicato da {{ Auth::user()->name }}</p>
-                        @else
-                            <p class="text-muted mb-2">Pubblicato da un utente non autenticato</p>
-                        @endif
-                        <p class="text-muted mb-2">{{ $article->created_at->format('d/m/Y') }}</p>
-                        <small class="badge bg-info text-dark mb-3">#{{ $article->category->name }}</small>
-                        <p class="card-text">{{ $article->description }}</p>
+                    {{-- Dettagli testuali --}}
+                    <div class="text-center mb-4">
+                        <h2>{{ $article->title }}</h2>
+                        <p class="text-muted">{{ $article->created_at->format('d/m/Y') }} -
+                            {{ $article->user->name ?? 'Non disponibile' }}</p>
+                        <small class="badge bg-info text-dark">#{{ $article->category->name }}</small>
+                        <p class="mt-3">{{ $article->description }}</p>
+                    </div>
+
+                    {{-- Tabella con dati aggiuntivi --}}
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <tbody>
+                                <tr>
+                                    <th>Prezzo</th>
+                                    <td>{{ $article->price }} €</td>
+                                </tr>
+                                <tr>
+                                    <th>Categoria</th>
+                                    <td>{{ $article->category->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Venditore</th>
+                                    <td>{{ $article->user->name ?? 'Non disponibile' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Spedizione</th>
+                                    <td>{{ $article->shipping_info }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Dimensioni (cm)</th>
+                                    <td>{{ $article->length_cm }} x {{ $article->width_cm }} x
+                                        {{ $article->height_cm }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Peso (kg)</th>
+                                    <td>{{ $article->weight_kg }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="text-end">
                         <a href="{{ route('article.index') }}" class="btn btn-primary mt-3">Torna alla lista</a>
                     </div>
                 </div>
             </section>
+
         </div>
     </div>
     {{-- Distanziatore --}}
